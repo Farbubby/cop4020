@@ -1,3 +1,6 @@
+-- Farhan Mahbub
+-- COP4020 Spring 2024
+
 --1
 squared :: Float -> Float
 squared x = x * x
