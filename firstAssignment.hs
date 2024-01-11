@@ -2,12 +2,12 @@
 -- COP4020 Spring 2024
 
 --1
-squared :: Float -> Float
-squared x = x * x
+multi2 :: Float -> Float -> Float
+multi2 x y = x * y
 
 --2
-cubed :: Float -> Float
-cubed x = squared x * x
+multi3 :: Float -> Float -> Float -> Float
+multi3 x y z = x * y * z
 
 --3
 first_a :: Int -> [Int]
