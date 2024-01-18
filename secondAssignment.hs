@@ -3,7 +3,7 @@
 
 -- 1
 newSqrt :: Float -> Int -- Helper function
-newSqrt n = floor (sqrt (n))
+newSqrt n = floor (sqrt n)
 
 isPrime :: Int -> Bool -- Helper function
 isPrime n = length [x | x <- [2..newSqrt (fromIntegral n)], n `mod` x == 0] == 0
@@ -31,3 +31,19 @@ fiboThree x n = let num = fib x in
 
 problem2 :: Int -> [Int]
 problem2 n = fiboThree 2 n
+
+-- 3
+isPerfectSquare :: Int -> Bool -- Helper function
+isPerfectSquare n = let num = floor (sqrt (fromIntegral n)) in 
+    if (num * num == n) 
+        then True 
+    else False
+
+hasThreeFactors :: Int -> Bool -- Helper function
+hasThreeFactors n = 
+    if (isPerfectSquare n) 
+        then isPrime (floor (sqrt (fromIntegral n))) 
+    else False
+
+problem3 :: Int -> [Int]
+problem3 n = [x | x <- [2..n], x `mod` 5 == 0 || hasThreeFactors x]
