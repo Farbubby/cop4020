@@ -35,3 +35,21 @@ function longestChain(limit) {
 }
 
 console.log("Problem 1: " + longestChain(1000000)); // 837799
+
+// Problem 2
+function factorialDigitSum(n) {
+  let factorial = BigInt(1);
+  for (let i = 1; i <= n; i++) {
+    factorial *= BigInt(i);
+  }
+
+  let sum = 0;
+  let str = factorial.toString();
+  for (let i = 0; i < str.length; i++) {
+    sum += parseInt(str[i]);
+  }
+
+  return sum;
+}
+
+console.log("Problem 2: " + factorialDigitSum(100)); // 648
