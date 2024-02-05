@@ -3,10 +3,11 @@
 
 // Problem 1
 function collatzSequenceLength(start) {
-  sequence = [];
+  let sequence = [];
 
   while (start != 1) {
     sequence.push(start);
+
     if (start % 2 == 0) {
       start = start / 2;
     } else {
@@ -25,6 +26,7 @@ function longestChain(limit) {
 
   for (let i = 1; i < limit; i++) {
     let length = collatzSequenceLength(i);
+
     if (length > longest) {
       longest = length;
       number = i;
@@ -39,12 +41,14 @@ console.log("Problem 1: " + longestChain(1000000)); // 837799
 // Problem 2
 function factorialDigitSum(n) {
   let factorial = BigInt(1);
+
   for (let i = 1; i <= n; i++) {
     factorial *= BigInt(i);
   }
 
   let sum = 0;
   let str = factorial.toString();
+
   for (let i = 0; i < str.length; i++) {
     sum += parseInt(str[i]);
   }
