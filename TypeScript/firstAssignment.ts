@@ -6,7 +6,7 @@
 // Problem 2
 
 // Problem 3
-function isTriangleNumber(x) {
+function isTriangleNumber(x: number) {
   let start = 1;
   let n = x * 2;
 
@@ -21,7 +21,7 @@ function isTriangleNumber(x) {
   return false;
 }
 
-function isTriangleWord(str) {
+function isTriangleWord(str: string) {
   let sum = 0;
   const word = str.toLowerCase();
 
@@ -32,11 +32,11 @@ function isTriangleWord(str) {
   return isTriangleNumber(sum);
 }
 
-function countTriangleWords(filename) {
+function countTriangleWords(filename: string) {
   const fs = require("fs");
-  const data = fs.readFileSync(filename, "utf8");
+  const text: string = fs.readFileSync(filename, "utf8");
 
-  return data.split(",").filter((str) => isTriangleWord(str)).length;
+  return text.split(",").filter((str: string) => isTriangleWord(str)).length;
 }
 
 console.log(countTriangleWords("0042_words.txt"));
