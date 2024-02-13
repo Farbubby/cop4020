@@ -1,5 +1,6 @@
 // Farhan Mahbub
 // COP4020 Spring 2024
+import { readFileSync } from "fs";
 
 // Problem 1
 
@@ -33,10 +34,9 @@ function isTriangleWord(str: string) {
 }
 
 function countTriangleWords(filename: string) {
-  const fs = require("fs");
-  const text: string = fs.readFileSync(filename, "utf8");
+  const text: string = readFileSync(filename, "utf8");
 
   return text.split(",").filter((str: string) => isTriangleWord(str)).length;
 }
 
-console.log(countTriangleWords("0042_words.txt"));
+console.log(countTriangleWords("./0042_words.txt"));

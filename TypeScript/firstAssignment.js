@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Farhan Mahbub
 // COP4020 Spring 2024
+var fs_1 = require("fs");
 // Problem 1
 // Problem 2
 // Problem 3
@@ -26,8 +29,7 @@ function isTriangleWord(str) {
     return isTriangleNumber(sum);
 }
 function countTriangleWords(filename) {
-    var fs = require("fs");
-    var text = fs.readFileSync(filename, "utf8");
+    var text = (0, fs_1.readFileSync)(filename, "utf8");
     return text.split(",").filter(function (str) { return isTriangleWord(str); }).length;
 }
-console.log(countTriangleWords("0042_words.txt"));
+console.log(countTriangleWords("./0042_words.txt"));
