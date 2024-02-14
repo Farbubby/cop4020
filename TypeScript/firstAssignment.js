@@ -4,7 +4,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // COP4020 Spring 2024
 var fs_1 = require("fs");
 // Problem 1
+function lexicoPerm(n) {
+    var str = "0123456789";
+    var result = "";
+    var fact = 1;
+    for (var i = 1; i <= 10; i++) {
+        fact *= i;
+    }
+    for (var i = 0; i < 10; i++) {
+        fact /= 10 - i;
+        var index = Math.floor(n / fact);
+        result += str.charAt(index);
+        str = str.slice(0, index) + str.slice(index + 1);
+        n -= index * fact;
+    }
+    return result;
+}
+console.log("Problem 1: " + lexicoPerm(1000000 - 1));
 // Problem 2
+function coinSum(target, coins) {
+    var dp = new Array(target + 1).fill(0);
+    dp[0] = 1;
+    for (var _i = 0, coins_1 = coins; _i < coins_1.length; _i++) {
+        var coin = coins_1[_i];
+        for (var i = coin; i <= target; i++) {
+            dp[i] += dp[i - coin];
+        }
+    }
+    return dp[target];
+}
+console.log("Problem 2: " + coinSum(200, [1, 2, 5, 10, 20, 50, 100, 200]));
 // Problem 3
 function isTriangleNumber(x) {
     var start = 1;
@@ -32,4 +61,4 @@ function countTriangleWords(filename) {
     var text = (0, fs_1.readFileSync)(filename, "utf8");
     return text.split(",").filter(function (str) { return isTriangleWord(str); }).length;
 }
-console.log(countTriangleWords("./0042_words.txt"));
+console.log("Problem 3: " + countTriangleWords("./0042_words.txt"));

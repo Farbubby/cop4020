@@ -23,6 +23,8 @@ function lexicoPerm(n: number) {
   return result;
 }
 
+console.log("Problem 1: " + lexicoPerm(1000000 - 1));
+
 // Problem 2
 function coinSum(target: number, coins: number[]) {
   const dp: number[] = new Array(target + 1).fill(0);
@@ -72,4 +74,4 @@ function countTriangleWords(filename: string) {
   return text.split(",").filter((str: string) => isTriangleWord(str)).length;
 }
 
-console.log("Problem 3:" + countTriangleWords("./0042_words.txt"));
+console.log("Problem 3: " + countTriangleWords("./0042_words.txt"));
