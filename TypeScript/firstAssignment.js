@@ -4,15 +4,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // COP4020 Spring 2024
 var fs_1 = require("fs");
 // Problem 1
-function lexicoPerm(n) {
-    var str = "0123456789";
+function lexicoPerm(arg, n) {
+    var str = arg;
+    var strlen = str.length;
     var result = "";
     var fact = 1;
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= strlen; i++) {
         fact *= i;
     }
-    for (var i = 0; i < 10; i++) {
-        fact /= 10 - i;
+    for (var i = 0; i < strlen; i++) {
+        fact /= strlen - i;
         var index = Math.floor(n / fact);
         result += str.charAt(index);
         str = str.slice(0, index) + str.slice(index + 1);
@@ -20,9 +21,9 @@ function lexicoPerm(n) {
     }
     return result;
 }
-console.log("Problem 1: " + lexicoPerm(1000000 - 1));
+console.log("Problem 1: " + lexicoPerm("0123456789", 1000000 - 1));
 // Problem 2
-function coinSum(target, coins) {
+function coinSums(target, coins) {
     var dp = new Array(target + 1).fill(0);
     dp[0] = 1;
     for (var _i = 0, coins_1 = coins; _i < coins_1.length; _i++) {
@@ -33,7 +34,7 @@ function coinSum(target, coins) {
     }
     return dp[target];
 }
-console.log("Problem 2: " + coinSum(200, [1, 2, 5, 10, 20, 50, 100, 200]));
+console.log("Problem 2: " + coinSums(200, [1, 2, 5, 10, 20, 50, 100, 200]));
 // Problem 3
 function isTriangleNumber(x) {
     var start = 1;

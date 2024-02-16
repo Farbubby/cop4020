@@ -3,17 +3,18 @@
 import { readFileSync } from "fs";
 
 // Problem 1
-function lexicoPerm(n: number) {
-  let str = "0123456789";
+function lexicoPerm(arg: string, n: number) {
+  let str = arg;
+  let strlen = str.length;
   let result = "";
   let fact = 1;
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= strlen; i++) {
     fact *= i;
   }
 
-  for (let i = 0; i < 10; i++) {
-    fact /= 10 - i;
+  for (let i = 0; i < strlen; i++) {
+    fact /= strlen - i;
     let index = Math.floor(n / fact);
     result += str.charAt(index);
     str = str.slice(0, index) + str.slice(index + 1);
@@ -23,10 +24,10 @@ function lexicoPerm(n: number) {
   return result;
 }
 
-console.log("Problem 1: " + lexicoPerm(1000000 - 1));
+console.log("Problem 1: " + lexicoPerm("0123456789", 1000000 - 1));
 
 // Problem 2
-function coinSum(target: number, coins: number[]) {
+function coinSums(target: number, coins: number[]) {
   const dp: number[] = new Array(target + 1).fill(0);
   dp[0] = 1;
 
@@ -39,7 +40,7 @@ function coinSum(target: number, coins: number[]) {
   return dp[target];
 }
 
-console.log("Problem 2: " + coinSum(200, [1, 2, 5, 10, 20, 50, 100, 200]));
+console.log("Problem 2: " + coinSums(200, [1, 2, 5, 10, 20, 50, 100, 200]));
 
 // Problem 3
 function isTriangleNumber(x: number) {
