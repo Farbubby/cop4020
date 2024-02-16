@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // Farhan Mahbub
 // COP4020 Spring 2024
-var fs_1 = require("fs");
+var words_1 = require("./words");
 // Problem 1
 function lexicoPerm(arg, n) {
     var str = arg;
@@ -58,8 +58,7 @@ function isTriangleWord(str) {
     }
     return isTriangleNumber(sum);
 }
-function countTriangleWords(filename) {
-    var text = (0, fs_1.readFileSync)(filename, "utf8");
-    return text.split(",").filter(function (str) { return isTriangleWord(str); }).length;
+function countTriangleWords(words) {
+    return words.filter(function (str) { return isTriangleWord(str); }).length;
 }
-console.log("Problem 3: " + countTriangleWords("./0042_words.txt"));
+console.log("Problem 3: " + countTriangleWords(words_1.default));

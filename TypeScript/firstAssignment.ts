@@ -1,6 +1,6 @@
 // Farhan Mahbub
 // COP4020 Spring 2024
-import { readFileSync } from "fs";
+import words from "./words";
 
 // Problem 1
 function lexicoPerm(arg: string, n: number) {
@@ -69,10 +69,8 @@ function isTriangleWord(str: string) {
   return isTriangleNumber(sum);
 }
 
-function countTriangleWords(filename: string) {
-  const text: string = readFileSync(filename, "utf8");
-
-  return text.split(",").filter((str: string) => isTriangleWord(str)).length;
+function countTriangleWords(words: string[]) {
+  return words.filter((str: string) => isTriangleWord(str)).length;
 }
 
-console.log("Problem 3: " + countTriangleWords("./0042_words.txt"));
+console.log("Problem 3: " + countTriangleWords(words));
