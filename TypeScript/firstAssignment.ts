@@ -24,7 +24,7 @@ function lexicoPerm(arg: string, n: number) {
   return result;
 }
 
-console.log("Problem 1: " + lexicoPerm("0123456789", 1000000 - 1));
+console.log("Problem 1: " + lexicoPerm("0123456789", 1000000 - 1)); // 2783915460
 
 // Problem 2
 function coinSums(target: number, coins: number[]) {
@@ -40,7 +40,7 @@ function coinSums(target: number, coins: number[]) {
   return dp[target];
 }
 
-console.log("Problem 2: " + coinSums(200, [1, 2, 5, 10, 20, 50, 100, 200]));
+console.log("Problem 2: " + coinSums(200, [1, 2, 5, 10, 20, 50, 100, 200])); // 73682
 
 // Problem 3
 function isTriangleNumber(x: number) {
@@ -73,4 +73,4 @@ function countTriangleWords(words: string[]) {
   return words.filter((str: string) => isTriangleWord(str)).length;
 }
 
-console.log("Problem 3: " + countTriangleWords(words));
+console.log("Problem 3: " + countTriangleWords(words)); // 162
