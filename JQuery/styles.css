@@ -52,6 +52,34 @@
   align-items: center;
 }
 
+.container5 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.nav-button {
+  text-decoration: none;
+  color: black;
+  width: 100px;
+  height: 40px;
+  background-color: peachpuff;
+  border: 1px solid black;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .button-square {
   width: 40px;
   height: 40px;
