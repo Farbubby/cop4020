@@ -8,7 +8,6 @@
   background-color: peachpuff;
   border: 1px solid black;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  gap: 25px;
 }
 
 .board {
@@ -27,6 +26,10 @@
   gap: 75px;
   justify-content: center;
   align-items: center;
+}
+
+.shuffle {
+  position: absolute;
 }
 
 img {
