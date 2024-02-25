@@ -30,7 +30,40 @@
 
 .shuffle {
   position: absolute;
+  transition: transform 1.5s ease;
 }
+
+.transition-1 {
+  transform: translate(530px, -50px);
+} /* DONE */
+
+.transition-2 {
+  transform: translate(445px, -50px);
+} /* DONE */
+
+.transition-3 {
+  transform: translate(625px, 150px);
+}
+
+.transition-4 {
+  transform: translate(620px, -50px);
+} /* DONE */
+
+.transition-5 {
+  transform: translate(705px, 35px);
+} /* DONE */
+
+.transition-6 {
+  transform: translate(705px, -50px);
+} /* DONE */
+
+.transition-7 {
+  transform: translate(445px, 35px);
+} /* DONE */
+
+.transition-8 {
+  transform: translate(525px, 35px);
+} /* DONE */
 
 img {
   width: 120px;
