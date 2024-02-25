@@ -1,3 +1,3 @@
 $(function () {
-  // jQuery code goes here
+  $("img#draggable").draggable();
 });
