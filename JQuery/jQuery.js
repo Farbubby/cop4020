@@ -18,4 +18,44 @@ $(function () {
       piece.classList.add(`transition-${i + 1}`);
     });
   }, 1500);
+
+  $("#up").on("click", () => {
+    $("#target").animate({ top: "-=10px" }, 0);
+  });
+
+  $("#down").on("click", () => {
+    $("#target").animate({ top: "+=10px" }, 0);
+  });
+
+  $("#left").on("click", () => {
+    $("#target").animate({ left: "-=10px" }, 0);
+  });
+
+  $("#right").on("click", () => {
+    $("#target").animate({ left: "+=10px" }, 0);
+  });
+
+  $(document).on("keydown", function (e) {
+    if (e.key == "ArrowUp") {
+      $("#target").animate({ top: "-=5px" }, 0);
+    }
+  });
+
+  $(document).on("keydown", function (e) {
+    if (e.key == "ArrowDown") {
+      $("#target").animate({ top: "+=5px" }, 0);
+    }
+  });
+
+  $(document).on("keydown", function (e) {
+    if (e.key == "ArrowLeft") {
+      $("#target").animate({ left: "-=10px" }, 0);
+    }
+  });
+
+  $(document).on("keydown", function (e) {
+    if (e.key == "ArrowRight") {
+      $("#target").animate({ left: "+=10px" }, 0);
+    }
+  });
 });
