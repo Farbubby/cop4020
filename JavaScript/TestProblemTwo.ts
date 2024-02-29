@@ -1,4 +1,4 @@
-function isPrime(n) {
+function isPrime(n: number) {
   if (n <= 1) return false;
 
   const sqrtNum = Math.sqrt(n);
@@ -11,7 +11,7 @@ function isPrime(n) {
   return true;
 }
 
-function sumOfPrimes(n) {
+function sumOfPrimes(n: number) {
   let sum = 0;
   for (let i = 1; i < n; i++) {
     if (isPrime(i)) {
