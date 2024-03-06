@@ -23,6 +23,7 @@ class Student {
         }
 
         void showData() {
+            cout << "[Student info]" << endl;
             cout << "Admission no.: " << admNo << endl;
             cout << "Student name: " << sName << endl;
             cout << "English: " << eng << endl;
@@ -53,6 +54,7 @@ class Batsman {
         }
 
         void displayData() {
+            cout << "[Batsman info]" << endl;
             cout << "Batsman code: " << bCode << endl;
             cout << "Batsman name: " << bName << endl;
             cout << "Innings: " << innings << endl;
@@ -80,11 +82,13 @@ class Test {
             cin >> description;
             cout << "Enter number of candidates: ";
             cin >> noCandidate;
+            cout << endl;
 
             centerReqd = calcNtr();
         }
 
         void dispTest() {
+            cout << "[Test info]" << endl;
             cout << "Test Code: " << testCode << endl;
             cout << "Description: " << description << endl;
             cout << "No. candidates: " << noCandidate << endl;
@@ -106,17 +110,24 @@ class Flight {
         } else if (distance > 2000) {
             return 2200;
         }
+        else {
+            return 0;
+        }
     }
 
     public:
-        void feedInfo(int flightNo, string destination, float distance) {
-            this->flightNo = flightNo;
-            this->destination = destination;
-            this->distance = distance;
-            fuel = calFuel();
+        void feedInfo() {
+            cout << "Enter flight no.: ";
+            cin >> flightNo;
+            cout << "Enter destination: ";
+            cin >> destination;
+            cout << "Enter distance: ";
+            cin >> distance;
         }
 
         void showInfo() {
+            cout << endl;
+            cout << "[Flight info]" << endl;
             cout << "Flight no.: " << flightNo << endl;
             cout << "Destination: " << destination << endl;
             cout << "Distance: " << distance << endl;
@@ -147,6 +158,8 @@ class Book {
             int n;
             cout << "Enter number of copies: ";
             cin >> n;
+            cout << endl;
+            cout << "[Book info]" << endl;
             cout << "Book no.: " << bookNo << endl;
             cout << "Book title: " << bookTitle << endl;
             cout << "Total cost: " << totalCost(n) << endl;
@@ -161,14 +174,14 @@ class Report {
     float average;
     float getAvg() {
         float sum = 0;
-        float size = sizeof(marks) / sizeof(marks[0]);
+        int size = 5;
         for (int i = 0; i < size; i++) {
             sum += marks[i];
         }
-        return (sum / 5);
+        return (sum / size);
     }
     void printMarks() {
-        float size = sizeof(marks) / sizeof(marks[0]);
+        int size = 5;
         for (int i = 0; i < size; i++) {
             cout << marks[i] << " ";
         }
@@ -183,6 +196,7 @@ class Report {
         }
 
         void displayInfo() {
+            cout << "[Report info]" << endl;
             cout << "Admission no.: " << adno << endl;
             cout << "Name: " << name << endl;
             cout << "Marks: ";
@@ -283,5 +297,162 @@ class Time {
 };
 
 int main() {
+    // Problem 1
+    Student student1;
+    student1.takeData(1, "John", 90, 80, 70);
+
+    student1.showData();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 2
+    Batsman batsman1;
+    batsman1.readData(1, "John", 10, 2, 500);
+
+    batsman1.displayData();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 3
+    Test test1;
+    test1.schedule();
+
+    test1.dispTest();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 4
+    Flight flight1;
+    flight1.feedInfo();
+
+    flight1.showInfo();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 5
+    Book book1;
+    book1.input();
+
+    book1.purchase();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 6
+    Report report1;
+    float marks[] = {90, 80, 70, 60, 50};
+    report1.readInfo(1, "John", marks);
+
+    report1.displayInfo();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 7b
+    Rectangle rectangle1, rectangle2;
+    rectangle1.setLength(5);
+    rectangle1.setWidth(2.5);
+    rectangle2.setLength(5);
+    rectangle2.setWidth(18.9);
+
+    cout << "[Rectangle 1 info]" << endl;
+    rectangle1.show();
+    cout << "Perimeter: " << rectangle1.perimeter() << endl;
+    cout << "Area: " << rectangle1.area() << endl;
+
+    cout << endl;
+
+    cout << "[Rectangle 2 info]" << endl;
+    rectangle2.show();
+    cout << "Perimeter: " << rectangle2.perimeter() << endl;
+    cout << "Area: " << rectangle2.area() << endl;
+
+    cout << endl;
+
+    // Problem 7c
+    cout << "Are the areas of the rectangles the same? " << (rectangle1.sameArea(rectangle2) == 1 ? "Yes" : "No") << endl;
+
+    cout << endl;
+
+    rectangle1.setLength(15);
+    rectangle1.setWidth(6.3);
+
+    cout << "[Rectangle 1 info]" << endl;
+    rectangle1.show();
+    cout << "Perimeter: " << rectangle1.perimeter() << endl;
+    cout << "Area: " << rectangle1.area() << endl;
+
+    cout << endl;
+
+    cout << "[Rectangle 2 info]" << endl;
+    rectangle2.show();
+    cout << "Perimeter: " << rectangle2.perimeter() << endl;
+    cout << "Area: " << rectangle2.area() << endl;
+
+    cout << endl;
+
+    cout << "Are the areas of the rectangles the same? " << (rectangle1.sameArea(rectangle2) == 1 ? "Yes" : "No") << endl;
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 8b
+    Complex complex1, complex2, complex3;
+    complex1.set(5, 3);
+    complex2.set(2, 4);
+    complex3 = complex1.sum(complex2);
+
+    cout << "[Complex 1 info]" << endl;
+    complex1.disp();
+
+    cout << endl;
+
+    cout << "[Complex 2 info]" << endl;
+    complex2.disp();
+
+    cout << endl;
+
+    cout << "[Complex 3 info]" << endl;
+    complex3.disp();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 9b
+    Distance distance1, distance2, distance3;
+    distance1.set(5, 3.5);
+    distance2.set(2, 4.5);
+    distance3 = distance1.add(distance2);
+
+    cout << "[Distance 1 info]" << endl;
+    distance1.disp();
+
+    cout << endl;
+
+    cout << "[Distance 2 info]" << endl;
+    distance2.disp();
+
+    cout << endl;
+
+    cout << "[Distance 3 info]" << endl;
+    distance3.disp();
+
+    cout << "-------------------------------------------------------" <<endl;
+
+    // Problem 10b
+    Time time1, time2, time3;
+    time1.setTime(5, 30);
+    time2.setTime(2, 45);
+    time3 = time1.sum(time2);
+
+    cout << "[Time 1 info]" << endl;
+    time1.showTime();
+
+    cout << endl;
+
+    cout << "[Time 2 info]" << endl;
+    time2.showTime();
+
+    cout << endl;
+
+    cout << "[Time 3 info]" << endl;
+    time3.showTime();
+
     return 0;
 }
