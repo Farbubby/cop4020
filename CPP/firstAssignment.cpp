@@ -75,15 +75,10 @@ class Test {
     }
 
     public:
-        void schedule() {
-            cout << "Enter test code: ";
-            cin >> testCode;
-            cout << "Enter description: ";
-            cin >> description;
-            cout << "Enter number of candidates: ";
-            cin >> noCandidate;
-            cout << endl;
-
+        void schedule(int testCode, string description, float noCandidate) {
+            this->testCode = testCode;
+            this->description = description;
+            this->noCandidate = noCandidate;
             centerReqd = calcNtr();
         }
 
@@ -116,17 +111,14 @@ class Flight {
     }
 
     public:
-        void feedInfo() {
-            cout << "Enter flight no.: ";
-            cin >> flightNo;
-            cout << "Enter destination: ";
-            cin >> destination;
-            cout << "Enter distance: ";
-            cin >> distance;
+        void feedInfo(int flightNo, string destination, float distance) {
+            this->flightNo = flightNo;
+            this->destination = destination;
+            this->distance = distance;
+            fuel = calFuel();
         }
 
         void showInfo() {
-            cout << endl;
             cout << "[Flight info]" << endl;
             cout << "Flight no.: " << flightNo << endl;
             cout << "Destination: " << destination << endl;
@@ -145,23 +137,18 @@ class Book {
     }
 
     public:
-        void input() {
-            cout << "Enter book no.: ";
-            cin >> bookNo;
-            cout << "Enter book title: ";
-            cin >> bookTitle;
-            cout << "Enter price: ";
-            cin >> price;
+        void input(int bookNo, string bookTitle, float price) {
+            this->bookNo = bookNo;
+            this->bookTitle = bookTitle;
+            this->price = price;
         }
 
-        void purchase() {
-            int n;
-            cout << "Enter number of copies: ";
-            cin >> n;
-            cout << endl;
+        void purchase(int n) {
             cout << "[Book info]" << endl;
             cout << "Book no.: " << bookNo << endl;
             cout << "Book title: " << bookTitle << endl;
+            cout << "Price: " << price << endl;
+            cout << "No. of copies: " << n << endl;
             cout << "Total cost: " << totalCost(n) << endl;
         }
 };
@@ -300,7 +287,6 @@ int main() {
     // Problem 1
     Student student1;
     student1.takeData(1, "John", 90, 80, 70);
-
     student1.showData();
 
     cout << "-------------------------------------------------------" <<endl;
@@ -308,32 +294,28 @@ int main() {
     // Problem 2
     Batsman batsman1;
     batsman1.readData(1, "John", 10, 2, 500);
-
     batsman1.displayData();
 
     cout << "-------------------------------------------------------" <<endl;
 
     // Problem 3
     Test test1;
-    test1.schedule();
-
+    test1.schedule(1, "Math", 100);
     test1.dispTest();
 
     cout << "-------------------------------------------------------" <<endl;
 
     // Problem 4
     Flight flight1;
-    flight1.feedInfo();
-
+    flight1.feedInfo(1, "New York", 1500);
     flight1.showInfo();
 
     cout << "-------------------------------------------------------" <<endl;
 
     // Problem 5
     Book book1;
-    book1.input();
-
-    book1.purchase();
+    book1.input(16, "Cooking", 5.99);
+    book1.purchase(5);
 
     cout << "-------------------------------------------------------" <<endl;
 
@@ -341,7 +323,6 @@ int main() {
     Report report1;
     float marks[] = {90, 80, 70, 60, 50};
     report1.readInfo(1, "John", marks);
-
     report1.displayInfo();
 
     cout << "-------------------------------------------------------" <<endl;
