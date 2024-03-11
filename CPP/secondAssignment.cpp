@@ -6,18 +6,38 @@
 #include <string>
 using namespace std;
 
+class Employee {
+    int ENO;
+    char ENAME[10];
+
+    public:
+        void getIt() {
+            cout << "Enter the employee number: ";
+            cin >> ENO;
+            cout << "Enter the employee name: ";
+            cin >> ws;
+            cin.getline(ENAME, 10);
+            cout << endl;
+        }
+        void showIt() {
+            cout << "Employee number: " << ENO << endl;
+            cout << "Employee name: " << ENAME << endl;
+            cout << endl;
+        }
+};
+
 // Problem 1
 void problemOne(int n, string fileName) {
-    ofstream file;
+    ofstream outputFile;
 
-    file.open(fileName);
+    outputFile.open(fileName);
 
-    if (file.is_open()) {
+    if (outputFile.is_open()) {
         for (int i = 1; i <= n; i++) {
-            file << i << endl;
+            outputFile << i << endl;
         }
 
-        file.close();
+        outputFile.close();
 
         cout << "[Problem 1]" << endl << "File created successfully" << endl << endl;
     } else {
@@ -27,15 +47,15 @@ void problemOne(int n, string fileName) {
 
 // Problem 2
 void problemTwo(string line, string fileName) {
-    ofstream file;
+    ofstream outputFile;
 
-    file.open(fileName);
+    outputFile.open(fileName);
 
-    if (file.is_open()) {
-        file << line;
-        file << endl;
+    if (outputFile.is_open()) {
+        outputFile << line;
+        outputFile << endl;
 
-        file.close();
+        outputFile.close();
 
         cout << "[Problem 2]" << endl << "File created successfully" << endl << endl;
     } else {
@@ -58,14 +78,14 @@ void problemThree(string fileName) {
         return count;
     };
 
-    ifstream file;
+    ifstream inputFile;
     string line;
     int totalLetters = 0;
 
-    file.open(fileName);
+    inputFile.open(fileName);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
             istringstream iss(line);
             string word;
 
@@ -74,7 +94,7 @@ void problemThree(string fileName) {
             }
         }
 
-        file.close();
+        inputFile.close();
 
         cout << "[Problem 3]" << endl << "Total number of letters: " << totalLetters << endl << endl;
     } else {
@@ -97,18 +117,18 @@ void problemFour(string fileName) {
         return count;
     };
 
-    ifstream file;
+    ifstream inputFile;
     string line;
     int totalBlanks = 0;
 
-    file.open(fileName);
+    inputFile.open(fileName);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
             totalBlanks += countBlanks(line);
         }
 
-        file.close();
+        inputFile.close();
 
         cout << "[Problem 4]" << endl << "Total number of blanks: " << totalBlanks << endl << endl;
     } else {
@@ -118,14 +138,14 @@ void problemFour(string fileName) {
 
 // Problem 5
 void problemFive(string fileName) {
-    ifstream file;
+    ifstream inputFile;
     string line;
     int totalWords = 0;
 
-    file.open(fileName);
+    inputFile.open(fileName);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
             istringstream iss(line);
             string word;
 
@@ -134,7 +154,7 @@ void problemFive(string fileName) {
             }
         }
 
-        file.close();
+        inputFile.close();
 
         cout << "[Problem 5]" << endl << "Total number of words: " << totalWords << endl << endl;
     } else {
@@ -157,14 +177,14 @@ void problemSix(string target, string fileName) {
         return newWord;
     };
 
-    ifstream file;
+    ifstream inputFile;
     string line;
     int wordCount = 0;
 
-    file.open(fileName);
+    inputFile.open(fileName);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
             transform(line.begin(), line.end(), line.begin(), ::tolower);
             transform(target.begin(), target.end(), target.begin(), ::tolower);
 
@@ -179,7 +199,7 @@ void problemSix(string target, string fileName) {
             }
         }
 
-        file.close();
+        inputFile.close();
 
         cout << "[Problem 6]" << endl << "Total number of \"" << target << "\": " << wordCount << endl << endl;
     } else {
@@ -189,20 +209,20 @@ void problemSix(string target, string fileName) {
 
 // Problem 7
 void problemSeven(char target, string fileName) {
-    ifstream file;
+    ifstream inputFile;
     string line;
     int lineCount = 0;
 
-    file.open(fileName);
+    inputFile.open(fileName);
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
             if (line[0] != target){
                 lineCount++;
             }
         }
 
-        file.close();
+        inputFile.close();
 
         cout << "[Problem 7]" << endl << "Total number of lines not starting with \'" << target << "\': " << lineCount << endl << endl;
     } else {
@@ -211,13 +231,13 @@ void problemSeven(char target, string fileName) {
 }
 
 // Problem 8
-void copyUpper(string inputFileName, string outputFileName) {
+void copyUpper(string outputFileName, string inputFileName) {
     ifstream inputFile;
     ofstream outputFile;
     string line;
 
-    inputFile.open(inputFileName);
     outputFile.open(outputFileName);
+    inputFile.open(inputFileName);
 
     if (inputFile.is_open() && outputFile.is_open()) {
         while (getline(inputFile, line)) {
@@ -235,7 +255,7 @@ void copyUpper(string inputFileName, string outputFileName) {
 }
 
 // Problem 9
-void vowelWords(string inputFileName, string outputFileName) {
+void vowelWords(string outputFileName, string inputFileName) {
 
     // Lambda function to check if a word starts with a vowel
     auto startsWithVowel = [](string word) {
@@ -247,8 +267,8 @@ void vowelWords(string inputFileName, string outputFileName) {
     ofstream outputFile;
     string line;
 
-    inputFile.open(inputFileName);
     outputFile.open(outputFileName);
+    inputFile.open(inputFileName);
 
     if (inputFile.is_open() && outputFile.is_open()) {
         while (getline(inputFile, line)) {
@@ -270,6 +290,34 @@ void vowelWords(string inputFileName, string outputFileName) {
         cout << "[Problem 9]" << endl << "File created successfully" << endl << endl;
     } else {
         cout << "[Problem 9]" << endl << "File(s) not found" << endl << endl;
+    }
+}
+
+// Problem 10
+void problemTen(string outputFileName, string inputFileName) {
+    ifstream inputFile;
+    ofstream outputFile;
+
+    outputFile.open(outputFileName, ios::binary);
+    inputFile.open(inputFileName, ios::binary);
+
+    if (inputFile.is_open() && outputFile.is_open()) {
+        Employee writeEmp;
+        Employee readEmp;
+
+        cout << "[Problem 10a]" << endl;
+        writeEmp.getIt();
+        outputFile.write((char*)&writeEmp, sizeof(writeEmp));
+        outputFile.close();
+
+        cout << "[Problem 10b]" << endl;
+        inputFile.read((char*)&readEmp, sizeof(readEmp));
+        readEmp.showIt();
+        inputFile.close();
+
+        cout << "[Problem 10]" << endl << "Successfully completed" << endl << endl;
+    } else {
+        cout << "[Problem 10]" << endl << "File(s) not found" << endl << endl;
     }
 }
 
@@ -296,10 +344,13 @@ int main() {
     problemSeven('A', "./text-files/STORY.txt");
 
     // Problem 8
-    copyUpper("./text-files/FIRST.txt", "./text-files/SECOND1.txt");
+    copyUpper("./text-files/SECOND1.txt", "./text-files/FIRST.txt");
 
     // Problem 9
-    vowelWords("./text-files/FIRST.txt", "./text-files/SECOND2.txt");
+    vowelWords("./text-files/SECOND2.txt", "./text-files/FIRST.txt");
+
+    // Problem 10
+    problemTen("./text-files/EMPLOYEE.bin", "./text-files/EMPLOYEE.bin");
 
     return 0;
 }
