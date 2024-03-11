@@ -5,10 +5,10 @@
 using namespace std;
 
 // Problem 1
-void problemOne(int n) {
+void problemOne(int n, string fileName) {
     ofstream file;
 
-    file.open("NOTES1.txt");
+    file.open(fileName);
 
     if (file.is_open()) {
         for (int i = 1; i <= n; i++) {
@@ -24,10 +24,10 @@ void problemOne(int n) {
 }
 
 // Problem 2
-void problemTwo(string line) {
+void problemTwo(string line, string fileName) {
     ofstream file;
 
-    file.open("OUT2.txt");
+    file.open(fileName);
 
     if (file.is_open()) {
         file << line;
@@ -142,19 +142,19 @@ void problemFive(string fileName) {
 
 int main() {
     // Problem 1
-    problemOne(100);
+    problemOne(100, "./text-files/NOTES.txt");
 
     // Problem 2
-    problemTwo("Time is a great teacher but unfortunately it kills all its pupils. Berlioz");
+    problemTwo("Time is a great teacher but unfortunately it kills all its pupils. Berlioz", "./text-files/OUT.txt");
 
     // Problem 3
-    problemThree("OUT2.txt");
+    problemThree("./text-files/OUT.txt");
 
     // Problem 4
-    problemFour("OUT2.txt");
+    problemFour("./text-files/OUT.txt");
 
     // Problem 5
-    problemFive("OUT2.txt");
+    problemFive("./text-files/OUT.txt");
 
     return 0;
 }

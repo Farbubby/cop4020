@@ -3,6 +3,7 @@
         "*.tpl": "html",
         "*.less": "css",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp"
     }
 }
