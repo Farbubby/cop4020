@@ -210,6 +210,69 @@ void problemSeven(char target, string fileName) {
     }
 }
 
+// Problem 8
+void copyUpper(string inputFileName, string outputFileName) {
+    ifstream inputFile;
+    ofstream outputFile;
+    string line;
+
+    inputFile.open(inputFileName);
+    outputFile.open(outputFileName);
+
+    if (inputFile.is_open() && outputFile.is_open()) {
+        while (getline(inputFile, line)) {
+            transform(line.begin(), line.end(), line.begin(), ::toupper);
+            outputFile << line << endl;
+        }
+
+        inputFile.close();
+        outputFile.close();
+
+        cout << "[Problem 8]" << endl << "File created successfully" << endl << endl;
+    } else {
+        cout << "[Problem 8]" << endl << "File(s) not found" << endl << endl;
+    }
+}
+
+// Problem 9
+void vowelWords(string inputFileName, string outputFileName) {
+
+    // Lambda function to check if a word starts with a vowel
+    auto startsWithVowel = [](string word) {
+        char firstChar = tolower(word[0]);
+        return firstChar == 'a' || firstChar == 'e' || firstChar == 'i' || firstChar == 'o' || firstChar == 'u';
+    };
+
+    ifstream inputFile;
+    ofstream outputFile;
+    string line;
+
+    inputFile.open(inputFileName);
+    outputFile.open(outputFileName);
+
+    if (inputFile.is_open() && outputFile.is_open()) {
+        while (getline(inputFile, line)) {
+            istringstream iss(line);
+            string word;
+            
+            while (iss >> word) {
+                if (startsWithVowel(word)) {
+                    outputFile << word << " ";
+                }
+            }
+
+            outputFile << endl;
+        }
+
+        inputFile.close();
+        outputFile.close();
+
+        cout << "[Problem 9]" << endl << "File created successfully" << endl << endl;
+    } else {
+        cout << "[Problem 9]" << endl << "File(s) not found" << endl << endl;
+    }
+}
+
 int main() {
     // Problem 1
     problemOne(100, "./text-files/NOTES.txt");
@@ -231,6 +294,12 @@ int main() {
 
     // Problem 7
     problemSeven('A', "./text-files/STORY.txt");
+
+    // Problem 8
+    copyUpper("./text-files/FIRST.txt", "./text-files/SECOND1.txt");
+
+    // Problem 9
+    vowelWords("./text-files/FIRST.txt", "./text-files/SECOND2.txt");
 
     return 0;
 }
