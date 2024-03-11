@@ -2,6 +2,7 @@
     "files.associations": {
         "*.tpl": "html",
         "*.less": "css",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

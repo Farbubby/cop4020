@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 using namespace std;
 
@@ -13,12 +14,78 @@ void problemOne(int n) {
         for (int i = 1; i <= n; i++) {
             file << i << endl;
         }
+
+        file.close();
+    } else {
+        cout << "Problem 1: File not found" << endl;
     }
+}
+
+// Problem 2
+void problemTwo(string line) {
+    ofstream file;
+
+    file.open("OUT2.txt");
+
+    if (file.is_open()) {
+        file << line;
+        file << endl;
+
+        file.close();
+    } else {
+        cout << "Problem 2: File not found" << endl;
+    }
+}
+
+// Problem 3
+void problemThree(string fileName) {
+
+    // Lambda function to count letters
+    auto countLetters = [](string word) {
+        int count = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (isalpha(word[i])) {
+                count++;
+            }
+        }
+
+        return count;
+    };
+
+    ifstream file;
+    string line;
+    int totalLetters = 0;
+
+    file.open(fileName);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            istringstream iss(line);
+            string word;
+
+            while (iss >> word) {
+                totalLetters += countLetters(word);
+            }
+        }
+
+        file.close();
+    } else {
+        cout << "Problem 3: File not found" << endl;
+    }
+
+    cout << "[Problem 3]" << endl << "Total letters: " << totalLetters << endl;
 }
 
 int main() {
     // Problem 1
     problemOne(100);
+
+    // Problem 2
+    problemTwo("Time is a great teacher but unfortunately it kills all its pupils. Berlioz");
+
+    // Problem 3
+    problemThree("OUT2.txt");
 
     return 0;
 }
