@@ -16,8 +16,10 @@ void problemOne(int n) {
         }
 
         file.close();
+
+        cout << "[Problem 1]" << endl << "File created successfully" << endl << endl;
     } else {
-        cout << "Problem 1: File not found" << endl;
+        cout << "[Problem 1]" << endl << "File not found" << endl << endl;
     }
 }
 
@@ -32,14 +34,15 @@ void problemTwo(string line) {
         file << endl;
 
         file.close();
+
+        cout << "[Problem 2]" << endl << "File created successfully" << endl << endl;
     } else {
-        cout << "Problem 2: File not found" << endl;
+        cout << "[Problem 2]" << endl << "File not found" << endl << endl;
     }
 }
 
 // Problem 3
 void problemThree(string fileName) {
-
     // Lambda function to count letters
     auto countLetters = [](string word) {
         int count = 0;
@@ -70,11 +73,71 @@ void problemThree(string fileName) {
         }
 
         file.close();
-    } else {
-        cout << "Problem 3: File not found" << endl;
-    }
 
-    cout << "[Problem 3]" << endl << "Total letters: " << totalLetters << endl;
+        cout << "[Problem 3]" << endl << "Total letters: " << totalLetters << endl << endl;
+    } else {
+        cout << "[Problem 3]" << endl << "File not found" << endl << endl;
+    }
+}
+
+// Problem 4
+void problemFour(string fileName) {
+    // Lambda function to count blanks in a sentence
+    auto countBlanks = [](string line) {
+        int count = 0;
+
+        for (int i = 0; i < line.length(); i++) {
+            if (line[i] == ' ') {
+                count++;
+            }
+        }
+
+        return count;
+    };
+
+    ifstream file;
+    string line;
+    int totalBlanks = 0;
+
+    file.open(fileName);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            totalBlanks += countBlanks(line);
+        }
+
+        file.close();
+
+        cout << "[Problem 4]" << endl << "Total blanks: " << totalBlanks << endl << endl;
+    } else {
+        cout << "[Problem 4]" << endl << "File not found" << endl << endl;
+    }
+}
+
+// Problem 5
+void problemFive(string fileName) {
+    ifstream file;
+    string line;
+    int totalWords = 0;
+
+    file.open(fileName);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            istringstream iss(line);
+            string word;
+
+            while (iss >> word) {
+                totalWords += 1;
+            }
+        }
+
+        file.close();
+
+        cout << "[Problem 5]" << endl << "Total words: " << totalWords << endl << endl;
+    } else {
+        cout << "[Problem 5]" << endl << "File not found" << endl << endl;
+    }
 }
 
 int main() {
@@ -86,6 +149,12 @@ int main() {
 
     // Problem 3
     problemThree("OUT2.txt");
+
+    // Problem 4
+    problemFour("OUT2.txt");
+
+    // Problem 5
+    problemFive("OUT2.txt");
 
     return 0;
 }
