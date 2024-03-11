@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
+#include <cctype>
 #include <string>
 using namespace std;
 
@@ -74,7 +76,7 @@ void problemThree(string fileName) {
 
         file.close();
 
-        cout << "[Problem 3]" << endl << "Total letters: " << totalLetters << endl << endl;
+        cout << "[Problem 3]" << endl << "Total number of letters: " << totalLetters << endl << endl;
     } else {
         cout << "[Problem 3]" << endl << "File not found" << endl << endl;
     }
@@ -108,7 +110,7 @@ void problemFour(string fileName) {
 
         file.close();
 
-        cout << "[Problem 4]" << endl << "Total blanks: " << totalBlanks << endl << endl;
+        cout << "[Problem 4]" << endl << "Total number of blanks: " << totalBlanks << endl << endl;
     } else {
         cout << "[Problem 4]" << endl << "File not found" << endl << endl;
     }
@@ -134,9 +136,77 @@ void problemFive(string fileName) {
 
         file.close();
 
-        cout << "[Problem 5]" << endl << "Total words: " << totalWords << endl << endl;
+        cout << "[Problem 5]" << endl << "Total number of words: " << totalWords << endl << endl;
     } else {
         cout << "[Problem 5]" << endl << "File not found" << endl << endl;
+    }
+}
+
+// Problem 6
+void problemSix(string target, string fileName) {
+    // Lambda function to remove non-alphabetic characters from a word
+    auto filterWord = [](string word) {
+        string newWord = "";
+
+        for (int i = 0; i < word.length(); i++) {
+            if (isalpha(word[i])) {
+                newWord += word[i];
+            }
+        }
+
+        return newWord;
+    };
+
+    ifstream file;
+    string line;
+    int wordCount = 0;
+
+    file.open(fileName);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            transform(line.begin(), line.end(), line.begin(), ::tolower);
+            transform(target.begin(), target.end(), target.begin(), ::tolower);
+
+            istringstream iss(line);
+            string word;
+
+            while (iss >> word) {
+                string newWord = filterWord(word);
+                if (newWord == target){
+                    wordCount++;
+                }
+            }
+        }
+
+        file.close();
+
+        cout << "[Problem 6]" << endl << "Total number of \"" << target << "\": " << wordCount << endl << endl;
+    } else {
+        cout << "[Problem 6]" << endl << "File not found" << endl << endl;
+    }
+}
+
+// Problem 7
+void problemSeven(char target, string fileName) {
+    ifstream file;
+    string line;
+    int lineCount = 0;
+
+    file.open(fileName);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            if (line[0] != target){
+                lineCount++;
+            }
+        }
+
+        file.close();
+
+        cout << "[Problem 7]" << endl << "Total number of lines not starting with \'" << target << "\': " << lineCount << endl << endl;
+    } else {
+        cout << "[Problem 7]" << endl << "File not found" << endl << endl;
     }
 }
 
@@ -155,6 +225,12 @@ int main() {
 
     // Problem 5
     problemFive("./text-files/OUT.txt");
+
+    // Problem 6
+    problemSix("the", "./text-files/STORY.txt");
+
+    // Problem 7
+    problemSeven('A', "./text-files/STORY.txt");
 
     return 0;
 }
