@@ -289,35 +289,35 @@ int main() {
     student1.takeData(1, "John", 90, 80, 70);
     student1.showData();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 2
     Batsman batsman1;
     batsman1.readData(1, "John", 10, 2, 500);
     batsman1.displayData();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 3
     Test test1;
     test1.schedule(1, "Math", 100);
     test1.dispTest();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 4
     Flight flight1;
     flight1.feedInfo(1, "New York", 1500);
     flight1.showInfo();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 5
     Book book1;
     book1.input(16, "Cooking", 5.99);
     book1.purchase(5);
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 6
     Report report1;
@@ -325,7 +325,7 @@ int main() {
     report1.readInfo(1, "John", marks);
     report1.displayInfo();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 7b
     Rectangle rectangle1, rectangle2;
@@ -372,7 +372,7 @@ int main() {
 
     cout << "Are the areas of the rectangles the same? " << (rectangle1.sameArea(rectangle2) == 1 ? "Yes" : "No") << endl;
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 8b
     Complex complex1, complex2, complex3;
@@ -393,7 +393,7 @@ int main() {
     cout << "[Complex 3 info]" << endl;
     complex3.disp();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 9b
     Distance distance1, distance2, distance3;
@@ -414,7 +414,7 @@ int main() {
     cout << "[Distance 3 info]" << endl;
     distance3.disp();
 
-    cout << "-------------------------------------------------------" <<endl;
+    cout << "-------------------------------------------------------" << endl;
 
     // Problem 10b
     Time time1, time2, time3;

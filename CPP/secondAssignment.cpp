@@ -26,6 +26,26 @@ class Employee {
         }
 };
 
+class Computer {
+    char chiptype[10];
+    int speed;
+
+    public:
+        void getDetails() {
+            cout << "Enter the computer chip: ";
+            cin >> ws;
+            cin.getline(chiptype, 10);
+            cout << "Enter the computer speed: ";
+            cin >> speed;
+            cout << endl;
+        }
+        void showDetails() {
+            cout << "Computer chip: " << chiptype << endl;
+            cout << "Computer speed: " << speed << endl;
+            cout << endl;
+        }
+};
+
 // Problem 1
 void problemOne(int n, string fileName) {
     ofstream outputFile;
@@ -231,7 +251,7 @@ void problemSeven(char target, string fileName) {
 }
 
 // Problem 8
-void copyUpper(string outputFileName, string inputFileName) {
+void copyUpper(string inputFileName, string outputFileName) {
     ifstream inputFile;
     ofstream outputFile;
     string line;
@@ -255,7 +275,7 @@ void copyUpper(string outputFileName, string inputFileName) {
 }
 
 // Problem 9
-void vowelWords(string outputFileName, string inputFileName) {
+void vowelWords(string inputFileName, string outputFileName) {
 
     // Lambda function to check if a word starts with a vowel
     auto startsWithVowel = [](string word) {
@@ -294,7 +314,7 @@ void vowelWords(string outputFileName, string inputFileName) {
 }
 
 // Problem 10
-void problemTen(string outputFileName, string inputFileName) {
+void problemTen(string inputFileName, string outputFileName) {
     ifstream inputFile;
     ofstream outputFile;
 
@@ -314,43 +334,94 @@ void problemTen(string outputFileName, string inputFileName) {
         inputFile.read((char*)&readEmp, sizeof(readEmp));
         readEmp.showIt();
         inputFile.close();
-
-        cout << "[Problem 10]" << endl << "Successfully completed" << endl << endl;
     } else {
         cout << "[Problem 10]" << endl << "File(s) not found" << endl << endl;
     }
 }
 
+// Problem 11
+void readFile(string inputFileName) {
+    ifstream inputFile;
+    int recordCount = 0;
+
+    inputFile.open(inputFileName, ios::binary);
+
+    if (inputFile.is_open()) {
+        Computer readComp;
+
+        cout << "[Problem 11]" << endl;
+        while (inputFile.read((char*)&readComp, sizeof(readComp))) {
+            cout << "---- Record " << recordCount + 1 << " ----" << endl;
+            readComp.showDetails();
+            recordCount++;
+        }
+
+        inputFile.close();
+
+        cout << "Total number of records: " << recordCount << endl << endl;
+    } else {
+        cout << "[Problem 11]" << endl << "File not found" << endl << endl;
+    }
+}
+
 int main() {
+
+    cout << "-------------------------------------------------------" << endl << endl;
+
     // Problem 1
-    problemOne(100, "./text-files/NOTES.txt");
+    problemOne(100, "./text-files/NOTES.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 2
-    problemTwo("Time is a great teacher but unfortunately it kills all its pupils. Berlioz", "./text-files/OUT.txt");
+    problemTwo("Time is a great teacher but unfortunately it kills all its pupils. Berlioz", "./text-files/OUT.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 3
-    problemThree("./text-files/OUT.txt");
+    problemThree("./text-files/OUT.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 4
-    problemFour("./text-files/OUT.txt");
+    problemFour("./text-files/OUT.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 5
-    problemFive("./text-files/OUT.txt");
+    problemFive("./text-files/OUT.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 6
-    problemSix("the", "./text-files/STORY.txt");
+    problemSix("the", "./text-files/STORY.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 7
-    problemSeven('A', "./text-files/STORY.txt");
+    problemSeven('A', "./text-files/STORY.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 8
-    copyUpper("./text-files/SECOND1.txt", "./text-files/FIRST.txt");
+    copyUpper("./text-files/FIRST.TXT", "./text-files/SECOND1.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 9
-    vowelWords("./text-files/SECOND2.txt", "./text-files/FIRST.txt");
+    vowelWords("./text-files/FIRST.TXT", "./text-files/SECOND2.TXT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 10
-    problemTen("./text-files/EMPLOYEE.bin", "./text-files/EMPLOYEE.bin");
+    problemTen("./text-files/EMPLOYEE.DAT", "./text-files/EMPLOYEE.DAT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
+
+    // Problem 11
+    readFile("./text-files/SHIP.DAT");
+
+    cout << "-------------------------------------------------------" << endl << endl;
 
     return 0;
 }
