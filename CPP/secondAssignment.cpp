@@ -73,6 +73,26 @@ class Student {
         }
 };
 
+class Stud {
+    int rNo;
+    char name[10];
+
+    public:
+        void enter() {
+            cout << "Enter the roll number: ";
+            cin >> rNo;
+            cout << "Enter the student name: ";
+            cin >> ws;
+            cin.getline(name, 10);
+            cout << endl;
+        }
+        void display() {
+            cout << "Roll number: " << rNo << endl;
+            cout << "Student name: " << name << endl;
+            cout << endl;
+        }
+};
+
 // Problem 1
 void problemOne(int n, string fileName) {
     ofstream outputFile;
@@ -86,7 +106,7 @@ void problemOne(int n, string fileName) {
 
         outputFile.close();
 
-        cout << "[Problem 1]" << endl << "File created successfully" << endl << endl;
+        cout << "[Problem 1]" << endl << "Data added successfully" << endl << endl;
     } else {
         cout << "[Problem 1]" << endl << "File not found" << endl << endl;
     }
@@ -104,7 +124,7 @@ void problemTwo(string line, string fileName) {
 
         outputFile.close();
 
-        cout << "[Problem 2]" << endl << "File created successfully" << endl << endl;
+        cout << "[Problem 2]" << endl << "Data added successfully" << endl << endl;
     } else {
         cout << "[Problem 2]" << endl << "File not found" << endl << endl;
     }
@@ -295,7 +315,7 @@ void copyUpper(string inputFileName, string outputFileName) {
         inputFile.close();
         outputFile.close();
 
-        cout << "[Problem 8]" << endl << "File created successfully" << endl << endl;
+        cout << "[Problem 8]" << endl << "Data added successfully" << endl << endl;
     } else {
         cout << "[Problem 8]" << endl << "File(s) not found" << endl << endl;
     }
@@ -334,7 +354,7 @@ void vowelWords(string inputFileName, string outputFileName) {
         inputFile.close();
         outputFile.close();
 
-        cout << "[Problem 9]" << endl << "File created successfully" << endl << endl;
+        cout << "[Problem 9]" << endl << "Data added successfully" << endl << endl;
     } else {
         cout << "[Problem 9]" << endl << "File(s) not found" << endl << endl;
     }
@@ -368,7 +388,7 @@ void problemTen(string inputFileName, string outputFileName) {
     }
 }
 
-// Problem 11
+// Problem 12
 void readFile(string inputFileName) {
     ifstream inputFile;
     int recordCount = 0;
@@ -378,7 +398,7 @@ void readFile(string inputFileName) {
     if (inputFile.is_open()) {
         Computer readComp;
 
-        cout << "[Problem 11]" << endl;
+        cout << "[Problem 12]" << endl;
         while (inputFile.read((char*)&readComp, sizeof(readComp))) {
             cout << "---- Record " << recordCount + 1 << " ----" << endl;
             readComp.showDetails();
@@ -389,12 +409,12 @@ void readFile(string inputFileName) {
 
         cout << "Total number of records: " << recordCount << endl << endl;
     } else {
-        cout << "[Problem 11]" << endl << "File not found" << endl << endl;
+        cout << "[Problem 12]" << endl << "File not found" << endl << endl;
     }
 }
 
-// Problem 12
-void problemTwelve(string inputFileName) {
+// Problem 13
+void problemThirteen(string inputFileName) {
     ifstream inputFile;
 
     inputFile.open(inputFileName, ios::binary);
@@ -402,7 +422,7 @@ void problemTwelve(string inputFileName) {
     if (inputFile.is_open()) {
         Student readStud;
 
-        cout << "[Problem 12]" << endl;
+        cout << "[Problem 13]" << endl;
         while (inputFile.read((char*)&readStud, sizeof(readStud))) {
             if (readStud.returnPercentage() > 75) {
                 readStud.displayData();
@@ -411,46 +431,32 @@ void problemTwelve(string inputFileName) {
 
         inputFile.close();
     } else {
-        cout << "[Problem 12]" << endl << "File not found" << endl << endl;
+        cout << "[Problem 13]" << endl << "File not found" << endl << endl;
     }
 }
 
-void generateStudentData(int n) {
+// Problem 15
+void problemFifteen(string outputFileName, int n) {
     ofstream outputFile;
 
-    outputFile.open("./text-files/STUDENT.DAT", ios::binary);
+    outputFile.open(outputFileName, ios::binary | ios::app);
 
     if (outputFile.is_open()) {
-        Student stud;
+        Stud writeStud;
+        Stud readStud;
 
+        cout << "[Problem 15]" << endl;
         for (int i = 0; i < n; i++) {
-            stud.enterData();
-            outputFile.write((char*)&stud, sizeof(stud));
+            writeStud.enter();
+            outputFile.write((char*)&writeStud, sizeof(writeStud));
         }
 
         outputFile.close();
+        cout << "Object added successfully" << endl << endl;
     } else {
-        cout << "File not found" << endl;
+        cout << "[Problem 15]" << endl << "File not found" << endl << endl;
     }
-}
 
-void generateComputerData(int n) {
-    ofstream outputFile;
-
-    outputFile.open("./text-files/SHIP.DAT", ios::binary);
-
-    if (outputFile.is_open()) {
-        Computer comp;
-
-        for (int i = 0; i < n; i++) {
-            comp.getDetails();
-            outputFile.write((char*)&comp, sizeof(comp));
-        }
-
-        outputFile.close();
-    } else {
-        cout << "File not found" << endl;
-    }
 }
 
 int main() {
@@ -507,15 +513,34 @@ int main() {
 
     cout << "-------------------------------------------------------" << endl << endl;
 
-    // Problem 11
+    // Problem 12
     readFile("./text-files/SHIP.DAT");
 
     cout << "-------------------------------------------------------" << endl << endl;
 
-    // Problem 12
-    problemTwelve("./text-files/STUDENT.DAT");
+    // Problem 13
+    problemThirteen("./text-files/STUDENT.DAT");
 
     cout << "-------------------------------------------------------" << endl << endl;
+
+    // Problem 14
+    cout << "[Problem 14]" << endl;
+    cout << "Statement 1: File.seekg(0, ios::end)" << endl;
+    cout << "Statement 2: File.tellg()" << endl;
+
+    cout << endl << "-------------------------------------------------------" << endl << endl;
+
+    // Problem 15
+    problemFifteen("./text-files/STUDENT1.DAT", 1);
+
+    cout << "-------------------------------------------------------" << endl << endl;
+
+    // Problem 16
+    cout << "[Problem 16]" << endl;
+    cout << "Statement 1: File.seekg((RecNo - 1) * sizeof(Item), ios::beg);" << endl;
+    cout << "Statement 2: File.seekp((RecNo - 1) * sizeof(Item), ios::beg);" << endl;
+
+    cout << endl << "-------------------------------------------------------" << endl << endl;
 
     return 0;
 }
