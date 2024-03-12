@@ -48,7 +48,7 @@ class Computer {
 
 class Student {
     char admNo[10];
-    char name[10];
+    char name[30];
     int percentage;
 
     public:
