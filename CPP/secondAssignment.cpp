@@ -361,11 +361,11 @@ void vowelWords(string inputFileName, string outputFileName) {
 }
 
 // Problem 10
-void problemTen(string inputFileName, string outputFileName) {
+void problemTen(string inputFileName, string outputFileName, int n) {
     ifstream inputFile;
     ofstream outputFile;
 
-    outputFile.open(outputFileName, ios::binary);
+    outputFile.open(outputFileName, ios::binary | ios::app);
     inputFile.open(inputFileName, ios::binary);
 
     if (inputFile.is_open() && outputFile.is_open()) {
@@ -374,14 +374,19 @@ void problemTen(string inputFileName, string outputFileName) {
 
         // Problem 10a
         cout << "[Problem 10a]" << endl;
-        writeEmp.getIt();
-        outputFile.write((char*)&writeEmp, sizeof(writeEmp));
+        for (int i = 0; i < n; i++) {
+            writeEmp.getIt();
+            outputFile.write((char*)&writeEmp, sizeof(writeEmp));
+        }
+
         outputFile.close();
 
         // Problem 10b
         cout << "[Problem 10b]" << endl;
-        inputFile.read((char*)&readEmp, sizeof(readEmp));
-        readEmp.showIt();
+        while (inputFile.read((char*)&readEmp, sizeof(readEmp))) {
+            readEmp.showIt();
+        }
+
         inputFile.close();
     } else {
         cout << "[Problem 10]" << endl << "File(s) not found" << endl << endl;
@@ -413,6 +418,26 @@ void readFile(string inputFileName) {
     }
 }
 
+// Generate computer data in a SHIP.DAT binary file
+void generateComputerData(string outputFileName, int n) {
+    ofstream outputFile;
+
+    outputFile.open(outputFileName, ios::binary | ios::app);
+
+    if (outputFile.is_open()) {
+        Computer writeComp;
+
+        for (int i = 0; i < n; i++) {
+            writeComp.getDetails();
+            outputFile.write((char*)&writeComp, sizeof(writeComp));
+        }
+
+        outputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
+    }
+}
+
 // Problem 13
 void problemThirteen(string inputFileName) {
     ifstream inputFile;
@@ -420,18 +445,38 @@ void problemThirteen(string inputFileName) {
     inputFile.open(inputFileName, ios::binary);
 
     if (inputFile.is_open()) {
-        Student readStud;
+        Student readStudent;
 
         cout << "[Problem 13]" << endl;
-        while (inputFile.read((char*)&readStud, sizeof(readStud))) {
-            if (readStud.returnPercentage() > 75) {
-                readStud.displayData();
+        while (inputFile.read((char*)&readStudent, sizeof(readStudent))) {
+            if (readStudent.returnPercentage() > 75) {
+                readStudent.displayData();
             }
         }
 
         inputFile.close();
     } else {
         cout << "[Problem 13]" << endl << "File not found" << endl << endl;
+    }
+}
+
+// Generate student data in a STUDENT.DAT binary file
+void generateStudentData(string outputFileName, int n) {
+    ofstream outputFile;
+
+    outputFile.open(outputFileName, ios::binary | ios::app);
+
+    if (outputFile.is_open()) {
+        Student writeStudent;
+
+        for (int i = 0; i < n; i++) {
+            writeStudent.enterData();
+            outputFile.write((char*)&writeStudent, sizeof(writeStudent));
+        }
+
+        outputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
     }
 }
 
@@ -452,11 +497,30 @@ void problemFifteen(string outputFileName, int n) {
         }
 
         outputFile.close();
-        cout << "Object added successfully" << endl << endl;
+        cout << "Object(s) added successfully" << endl << endl;
     } else {
         cout << "[Problem 15]" << endl << "File not found" << endl << endl;
     }
 
+}
+
+// Read student data from a STUDENT1.DAT binary file
+void readStudData(string inputFileName) {
+    ifstream inputFile;
+
+    inputFile.open(inputFileName, ios::binary);
+
+    if (inputFile.is_open()) {
+        Stud readStud;
+
+        while (inputFile.read((char*)&readStud, sizeof(readStud))) {
+            readStud.display();
+        }
+
+        inputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
+    }
 }
 
 int main() {
@@ -509,16 +573,18 @@ int main() {
     cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 10
-    problemTen("./text-files/EMPLOYEE.DAT", "./text-files/EMPLOYEE.DAT");
+    problemTen("./text-files/EMPLOYEE.DAT", "./text-files/EMPLOYEE.DAT", 1);
 
     cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 12
+    // generateComputerData("./text-files/SHIP.DAT", 3);
     readFile("./text-files/SHIP.DAT");
 
     cout << "-------------------------------------------------------" << endl << endl;
 
     // Problem 13
+    // generateStudentData("./text-files/STUDENT.DAT", 3);
     problemThirteen("./text-files/STUDENT.DAT");
 
     cout << "-------------------------------------------------------" << endl << endl;
@@ -532,6 +598,7 @@ int main() {
 
     // Problem 15
     problemFifteen("./text-files/STUDENT1.DAT", 1);
+    readStudData("./text-files/STUDENT1.DAT");
 
     cout << "-------------------------------------------------------" << endl << endl;
 
