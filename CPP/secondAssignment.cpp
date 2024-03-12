@@ -57,7 +57,7 @@ class Student {
             cin >> ws;
             cin.getline(admNo, 10);
             cout << "Enter the student name: ";
-            cin.getline(name, 10);
+            cin.getline(name, 30);
             cout << "Enter the student percentage: ";
             cin >> percentage;
             cout << endl;
