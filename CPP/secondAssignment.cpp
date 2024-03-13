@@ -93,6 +93,65 @@ class Stud {
         }
 };
 
+// Generate computer data in a SHIP.DAT binary file
+void generateComputerData(string outputFileName, int n) {
+    ofstream outputFile;
+
+    outputFile.open(outputFileName, ios::binary | ios::app);
+
+    if (outputFile.is_open()) {
+        Computer writeComp;
+
+        for (int i = 0; i < n; i++) {
+            writeComp.getDetails();
+            outputFile.write((char*)&writeComp, sizeof(writeComp));
+        }
+
+        outputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
+    }
+}
+
+// Generate student data in a STUDENT.DAT binary file
+void generateStudentData(string outputFileName, int n) {
+    ofstream outputFile;
+
+    outputFile.open(outputFileName, ios::binary | ios::app);
+
+    if (outputFile.is_open()) {
+        Student writeStudent;
+
+        for (int i = 0; i < n; i++) {
+            writeStudent.enterData();
+            outputFile.write((char*)&writeStudent, sizeof(writeStudent));
+        }
+
+        outputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
+    }
+}
+
+// Read student data from a STUDENT1.DAT binary file
+void readStudData(string inputFileName) {
+    ifstream inputFile;
+
+    inputFile.open(inputFileName, ios::binary);
+
+    if (inputFile.is_open()) {
+        Stud readStud;
+
+        while (inputFile.read((char*)&readStud, sizeof(readStud))) {
+            readStud.display();
+        }
+
+        inputFile.close();
+    } else {
+        cout << "File not found" << endl << endl;
+    }
+}
+
 // Problem 1
 void problemOne(int n, string fileName) {
     ofstream outputFile;
@@ -418,26 +477,6 @@ void readFile(string inputFileName) {
     }
 }
 
-// Generate computer data in a SHIP.DAT binary file
-void generateComputerData(string outputFileName, int n) {
-    ofstream outputFile;
-
-    outputFile.open(outputFileName, ios::binary | ios::app);
-
-    if (outputFile.is_open()) {
-        Computer writeComp;
-
-        for (int i = 0; i < n; i++) {
-            writeComp.getDetails();
-            outputFile.write((char*)&writeComp, sizeof(writeComp));
-        }
-
-        outputFile.close();
-    } else {
-        cout << "File not found" << endl << endl;
-    }
-}
-
 // Problem 13
 void problemThirteen(string inputFileName) {
     ifstream inputFile;
@@ -457,26 +496,6 @@ void problemThirteen(string inputFileName) {
         inputFile.close();
     } else {
         cout << "[Problem 13]" << endl << "File not found" << endl << endl;
-    }
-}
-
-// Generate student data in a STUDENT.DAT binary file
-void generateStudentData(string outputFileName, int n) {
-    ofstream outputFile;
-
-    outputFile.open(outputFileName, ios::binary | ios::app);
-
-    if (outputFile.is_open()) {
-        Student writeStudent;
-
-        for (int i = 0; i < n; i++) {
-            writeStudent.enterData();
-            outputFile.write((char*)&writeStudent, sizeof(writeStudent));
-        }
-
-        outputFile.close();
-    } else {
-        cout << "File not found" << endl << endl;
     }
 }
 
@@ -502,25 +521,6 @@ void problemFifteen(string outputFileName, int n) {
         cout << "[Problem 15]" << endl << "File not found" << endl << endl;
     }
 
-}
-
-// Read student data from a STUDENT1.DAT binary file
-void readStudData(string inputFileName) {
-    ifstream inputFile;
-
-    inputFile.open(inputFileName, ios::binary);
-
-    if (inputFile.is_open()) {
-        Stud readStud;
-
-        while (inputFile.read((char*)&readStud, sizeof(readStud))) {
-            readStud.display();
-        }
-
-        inputFile.close();
-    } else {
-        cout << "File not found" << endl << endl;
-    }
 }
 
 int main() {
