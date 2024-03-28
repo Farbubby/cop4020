@@ -4,29 +4,21 @@
 
 using namespace std;
 
-mutex mtx;
-
 void mt1() {
     for (int i = 1; i <= 10000; ++i) {
-        mtx.lock();
         cout << "1:" << i << endl;
-        mtx.unlock();
     }
 }
 
 void mt2() {
     for (int i = 2; i <= 20000; i += 2) {
-        mtx.lock();
         cout << "2:" << i << endl;
-        mtx.unlock();
     }
 }
 
 void mt3() {
     for (int i = 7; i <= 70000; i += 7) {
-        mtx.lock();
         cout << "3:" << i << endl;
-        mtx.unlock();
     }
 }
 
