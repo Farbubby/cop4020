@@ -4,16 +4,28 @@
 using namespace std;
 
 class MyPrinter {
-public:
-    static MyPrinter* getInstance() {
-        static MyPrinter instance;
-        return &instance;
-    }
+protected:
+    static MyPrinter* printer;
+    MyPrinter() {}
 
-    void print(string str) {
+public:
+    static MyPrinter* getInstance();
+
+    void print(const string& str) {
         cout << "Printing: " << str << endl;
     }
 };
+
+MyPrinter* MyPrinter::printer = nullptr;
+
+MyPrinter* MyPrinter::getInstance()
+{
+    if (printer == nullptr)
+    {
+        printer = new MyPrinter();
+    }
+    return printer;
+}
 
 int main() {
     MyPrinter* p1 = MyPrinter::getInstance();
