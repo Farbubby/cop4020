@@ -1,4 +1,4 @@
-﻿public class USFStudent {
+﻿class USFStudent {
     public void sayIt() {
         System.Console.WriteLine("Go Bulls!");
     }
@@ -8,7 +8,7 @@
     }
 }
 
-public class UCFStudent {
+class UCFStudent {
     public void sayIt() {
         System.Console.WriteLine("Charge On!");
     }
@@ -18,7 +18,7 @@ public class UCFStudent {
     }
 }
 
-public class UFStudent {
+class UFStudent {
     public void sayIt() {
         System.Console.WriteLine("Go Gators!");
     }
